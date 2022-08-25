@@ -37,6 +37,8 @@
           :type="inputType"
           :name="name" 
           :ref="ref"
+          :min="(min) ? min : false" 
+          :max="(max) ? max : false"
           class="cld-input__input" 
           @input="inputHandler"
         />
@@ -93,7 +95,7 @@ export default {
     type: {
       type: String,
       required: false,
-      default: "text",
+      default: "string",
     },
 
     cols: {
@@ -142,6 +144,18 @@ export default {
       type: Number,
       required: false,
       default: 1
+    },
+
+    min: {
+      type: String,
+      required: false,
+      default: '',
+    },
+
+    max: {
+      type: String,
+      required: false,
+      default: '',
     }
   },
 
@@ -174,7 +188,19 @@ export default {
   methods: {
     inputHandler(e) {
       // console.log('--- components -> cld-input -> input-handler method ---')
-      this.$emit('input', e.target.value)
+      let value = e.target.value
+
+      if (this.type === 'number') {
+        if (this.min && +e.target.value < +this.min) {
+            value = this.min 
+        }
+
+        if (this.max && +e.target.value > +this.max) {
+          value = this.max 
+        }
+      }
+
+      this.$emit('input', value)
     },
 
     decrement() {

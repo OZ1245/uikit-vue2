@@ -2,8 +2,8 @@
   <div id="app">
     <header class="header">
       <nav class="header__menu">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/about">About</router-link>
+        <router-link to="/">Главная</router-link> |
+        <router-link to="/input">Поле ввода Input</router-link>
       </nav>
     </header>
 
