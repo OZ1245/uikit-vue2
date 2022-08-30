@@ -17,6 +17,14 @@
     <hr/>
 
     <cld-input 
+      v-model="input.password" 
+      label="Пароль"
+      type="password"
+    />
+
+    <hr/>
+
+    <cld-input 
       v-model="input.number"
       label="Только числа"
       type="number"
@@ -30,6 +38,7 @@
       type="number"
       min="-10"
       max="10"
+      caption="Допустимый диапозон от -10 до 10"
     />
 
     <hr/>
@@ -47,6 +56,7 @@
       v-model="input.textarea"
       label="Текстовое поле"
       type="text"
+      :copyButton="true"
     />
   </div>
 </template>
@@ -65,6 +75,7 @@ export default {
     return {
       input: {
         default: '',
+        password: '',
         number: '',
         numberMinMax: 0,
         numberButtons: 0,

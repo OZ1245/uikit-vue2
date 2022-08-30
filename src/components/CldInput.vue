@@ -22,6 +22,12 @@
           class="cld-input__textarea"
           @input="inputHandler"
         />
+        <button
+          v-if="copyButton"
+          @click="copyText"
+        >
+          <clipboard-copy-icon />
+        </button>
       </template>
 
       <template v-else>
@@ -43,6 +49,13 @@
           @input="inputHandler"
         />
         <button
+          v-if="type === 'password'"
+          title="Показать/скрыть пароль"
+          @click="showPassword = !showPassword"
+        >
+          <component :is="eye" />
+        </button>
+        <button
           v-if="type === 'number' && buttons"
           type="button"
           @click="increment"
@@ -53,20 +66,35 @@
     </div>
 
     <span 
-      v-if="message"
+      v-if="cldInput_message || cldInput_showMessage"
       :class="[
         'cld-input__message', 
-        `cld-input__message--${messageType}`
+        `cld-input__message--${cldInput_messageType}`
       ]"
     >
-      {{ message }}
+      {{ cldInput_message }}
+    </span>
+
+    <span
+      v-if="caption"
+      class="cld-input__caption"
+    >
+      {{ caption }}
     </span>
   </div>
 </template>
 
 <script>
+import { EyeIcon, EyeOffIcon, ClipboardCopyIcon } from "@vue-hero-icons/outline"
+
 export default {
   name: "CldInput",
+
+  components: {
+    EyeIcon,
+    EyeOffIcon,
+    ClipboardCopyIcon
+  },
 
   props: {
     value: {
@@ -110,16 +138,10 @@ export default {
       default: 0
     },
 
-    message: {
-      type: String,
+    showMessage: {
+      type: Boolean,
       required: false,
-      default: "",
-    },
-
-    messageType: {
-      type: String,
-      required: false,
-      default: 'neutral',
+      default: false
     },
 
     refName: {
@@ -156,12 +178,37 @@ export default {
       type: String,
       required: false,
       default: '',
+    },
+
+    caption: {
+      type: String,
+      required: false,
+      default: ''
+    },
+
+    copyButton: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
+
+  data() {
+    return {
+      cldInput_showPassword: false,
+      cldInput_showMessage: this.showMessage,
+      cldInput_message: null,
+      cldInput_messageType: 'neutral',
     }
   },
 
   computed: {
     inputType() {
       if (this.type === 'string') {
+        return 'text'
+      }
+
+      if (this.showPassword) {
         return 'text'
       }
 
@@ -174,29 +221,39 @@ export default {
       }
 
       return this.refName
-    }
+    },
+
+    eye() {
+      return `eye-${this.inputType === 'text' ? 'off-' : ''}icon`
+    },
   },
 
   mounted() {
     if (this.type === 'number' && this.buttons && (typeof this.value === 'string')) {
-      console.error('--- components -> cld-input ---');
-      console.error('Need set value!');
-      console.error('input:', this.$refs[this.ref]);
+      console.error('--- components -> cld-input ---')
+      console.error('Need set value!')
+      console.error('input:', this.$refs[this.ref])
+      this.cldInput_message = `Установитe значение по-умолчанию!`
     }
   },
 
   methods: {
     inputHandler(e) {
       // console.log('--- components -> cld-input -> input-handler method ---')
+      this.cldInput_message = ''
+      this.cldInput_showMessage = false
+
       let value = e.target.value
 
       if (this.type === 'number') {
-        if (this.min && +e.target.value < +this.min) {
-            value = this.min 
+        if (this.min && parseInt(value) < parseInt(this.min)) {
+          value = parseInt(this.min) 
+          this.cldInput_message = `Минимальное допустимое значение: ${this.min}`
         }
 
-        if (this.max && +e.target.value > +this.max) {
-          value = this.max 
+        if (this.max && parseInt(value) > parseInt(this.max)) {
+          value = parseInt(this.max) 
+          this.cldInput_message = `Максимальное допустимое значение: ${this.max}`
         }
       }
 
@@ -209,6 +266,38 @@ export default {
 
     increment() {
       this.$emit('input', +this.value + this.step)
+    },
+
+    copyText() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(this.value)
+          .then(() => {
+            if (this.value.length) {
+              // TODO: Уведомление
+              console.warn('Текст скопирован')
+            }
+          })
+          .catch((error) => {
+            console.error(error)
+          })
+      } else {
+        // Если navigation.clipboard API не поддерживается браузером
+        const $input = this.$refs[this.ref]
+        $input.select()
+        document.execCommand('copy')
+        console.log($input.value)
+        console.warn('Текст скопирован')
+      }
+    },
+
+    // Тестовая функция
+    getClipboardData() {
+      navigator.clipboard.readText()
+        .then(text => text)
+        .catch((error) => {
+          // возможно, пользователь не дал разрешение на чтение данных из буфера обмена
+          console.error(error);
+        })
     }
   }
 };
@@ -226,5 +315,7 @@ export default {
   &[type="number"] {
     -moz-appearance: textfield; /* Firefox */
   }
+
+
 }
 </style>
