@@ -273,8 +273,10 @@ export default {
         navigator.clipboard.writeText(this.value)
           .then(() => {
             if (this.value.length) {
-              // TODO: Уведомление
-              console.warn('Текст скопирован')
+              this.$CldNotice({
+                type: 'success',
+                message: 'Текст скопирован'
+              })
             }
           })
           .catch((error) => {
@@ -285,8 +287,10 @@ export default {
         const $input = this.$refs[this.ref]
         $input.select()
         document.execCommand('copy')
-        console.log($input.value)
-        console.warn('Текст скопирован')
+        this.$CldNotice({
+          type: 'success',
+          message: 'Текст скопирован'
+        })
       }
     },
 
@@ -296,7 +300,10 @@ export default {
         .then(text => text)
         .catch((error) => {
           // возможно, пользователь не дал разрешение на чтение данных из буфера обмена
-          console.error(error);
+          this.$CldNotice({
+            type: 'warning',
+            message: error
+          })
         })
     }
   }

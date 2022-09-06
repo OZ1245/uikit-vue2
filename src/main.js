@@ -14,6 +14,9 @@ Vue.use(VueHighlightJS, {
   }
 })
 
+import CldNotice from '@/components/CldNotice/main.js'
+Vue.prototype.$CldNotice = CldNotice
+
 Vue.config.productionTip = false
 
 new Vue({
