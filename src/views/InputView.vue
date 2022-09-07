@@ -1,87 +1,46 @@
 <template>
   <div class="input-page">
-    <cld-input 
-      v-model="input.default"
-      label="Дефолт"
-    />
-
-    <highlight-code lang="html">
-      <pre>
-        &lt;cld-input 
-          v-model="input.default"
-          label="Дефолт"
-        /&gt;
-      </pre>
-    </highlight-code>
-
-    <hr/>
-
-    <cld-input 
-      v-model="input.password" 
-      label="Пароль"
-      type="password"
-    />
-
-    <hr/>
-
-    <cld-input 
-      v-model="input.number"
-      label="Только числа"
-      type="number"
-    />
-
-    <hr/>
-    
-    <cld-input 
-      v-model="input.numberMinMax"
-      label="Диапозон"
-      type="number"
-      min="-10"
-      max="10"
-      caption="Допустимый диапозон от -10 до 10"
-    />
-
-    <hr/>
-
-    <cld-input 
-      v-model="input.numberButtons"
-      label="Числа со счетчиками"
-      type="number"
-      :buttons="true"
-    />
-
-    <hr/>
-
-    <cld-input 
-      v-model="input.textarea"
-      label="Текстовое поле"
-      type="text"
-      :copyButton="true"
-    />
+    <cld-tabs
+      v-model="activeTabName" 
+      :tabs="tabs"
+    >
+      <component :is="activeTabName"></component>
+    </cld-tabs>
   </div>
 </template>
 
 <script>
-import CldInput from "@/components/CldInput";
+import CldTabs from '@/components/CldTabs'
+import Description from '@/components/demo/views/input/Description'
+import Examples from '@/components/demo/views/input/Examples'
 
 export default {
   name: "HomeView",
 
   components: {
-    CldInput,
+    CldTabs,
+    Description,
+    Examples
   },
 
   data() {
     return {
-      input: {
-        default: '',
-        password: '',
-        number: '',
-        numberMinMax: 0,
-        numberButtons: 0,
-        textarea: '',
-      },
+      activeTabName: null,
+      tabs: [
+        {
+          name: 'description',
+          title: 'Описание',
+        },
+        {
+          name: 'examples',
+          title: 'Примеры'
+        }
+      ]
     };
   },
+
+  mounted() {
+    this.activeTabName = this.tabs[0].name
+  }
 };
 </script>
