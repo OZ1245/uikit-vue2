@@ -17,6 +17,9 @@ Vue.use(VueHighlightJS, {
 import CldNotice from '@/components/CldNotice/main.js'
 Vue.prototype.$CldNotice = CldNotice
 
+// import VueStickyDirective from '@/utils/VueStickyDirective'
+// Vue.directive('sticky', VueStickyDirective)
+
 Vue.config.productionTip = false
 
 new Vue({
