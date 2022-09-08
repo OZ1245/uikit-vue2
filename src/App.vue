@@ -60,10 +60,6 @@ export default {
       const $aside = this.$refs.aside
       const $main = this.$refs.main
 
-      console.log('$aside.offsetTop:', $aside.offsetTop)
-      console.log('this.scrollTop:', this.scrollTop)
-      console.log('$header.offsetHeight:', $header.offsetHeight)
-
       if ($aside.offsetTop < this.scrollTop) {
         $aside.classList.add('_fixed')
         $main.style.marginLeft = `${$aside.offsetWidth}px`
