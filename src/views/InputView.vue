@@ -44,3 +44,10 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.input-page {
+  width: 100%;
+  padding: 16px;
+}
+</style>
