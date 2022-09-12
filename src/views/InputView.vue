@@ -1,5 +1,11 @@
 <template>
   <div class="input-page">
+    <div class="input-page__header">
+      <h1 class="input-page__title">
+        Поле ввода Input
+      </h1>
+    </div>
+
     <cld-tabs
       v-model="activeTabName" 
       :tabs="tabs"
