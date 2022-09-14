@@ -11,7 +11,7 @@
             :key="`table-th-${thIndex}`"
             :class="[
               'cld-table__th',
-              `cld-table__th--${th.align}`,
+              `cld-table__th--${(th.align) ? th.align : 'center'}`,
               (th.modificator) ? `cld-table__th--${th.modificator}` : false
             ]"
           >
