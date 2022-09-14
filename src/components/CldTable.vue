@@ -98,3 +98,52 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.cld-table {
+  border-spacing: 0;
+
+  &__th, &__td {
+    padding: 4px 8px;
+  }
+
+  &__th {
+    color: $cTextWhite;
+
+    background-color: $cAccent;
+    border: {
+      width: 0 1px 0 0;
+      style: solid;
+      color: $cWhite
+    } 
+
+    &:last-child {
+      border-color: $cAccent;
+    }
+
+    &--center {
+      text-align: center;
+    }
+  }
+
+  &__td {
+    border: {
+      width: 0 1px 1px 0;
+      style: solid;
+      color: $cBorder;
+    }
+
+    &:first-child {
+      border-left-width: 1px;
+    }
+
+    &--center {
+      text-align: center;
+    }
+
+    &--bold {
+      font-weight: 700;
+    }
+  }
+}
+</style>
