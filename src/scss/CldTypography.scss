@@ -1,0 +1,90 @@
+.h0 {
+  @include tHeader(0);
+}
+
+h1, .h1 {
+  @include tHeader(1);
+}
+
+h2, .h2 {
+  @include tHeader(2);
+}
+
+h3, .h3 {
+  @include tHeader(3);
+}
+
+h4, .h4 {
+  @include tHeader(4);
+}
+
+h5, .h5 {
+  @include tHeader(5);
+}
+
+h6, .h6 {
+  @include tHeader(6);
+}
+
+p, .text-primary {
+  @include tText('primary');
+}
+
+.text-additional {
+  @include tText('additional');
+}
+
+a, .link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  transition: color .3s;
+  cursor: pointer;
+
+  &:after {
+    @include Size(0, 1px);
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    display: inline-block;
+
+    content: '';
+    transition: width .3s, color .3s;
+  }
+
+  &:hover {
+    transition: color .15s;
+
+    &::after {
+      width: 100%;
+      transition: width .15s, color .3s;
+    }
+  }
+
+  &--primary {
+    color: $cAccent;
+
+    &::after {
+      background: $cAccent;
+    }
+
+    &:hover {
+      color: darken($cAccent, 10%);
+
+      .primary::after,
+      .link--primary::after {
+        background: $cAccent;
+      }
+    }
+  }
+}
+
+th {
+  @include tText();
+}
+
+td {
+  @include tText('primary');
+}

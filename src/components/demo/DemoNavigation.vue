@@ -64,7 +64,16 @@ export default {
               link: '/input',
             }
           ]
-        }
+        },
+        {
+          title: 'Общее',
+          menu: [
+            {
+              title: 'Типографика',
+              link: '/typography',
+            }
+          ]
+        },
       ]
     }
   }
@@ -76,9 +85,16 @@ export default {
   padding: 16px;
 
   &__sections-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    @include tList();
+
+    width: 100%;
+  }
+
+  &__section {
+    @include tText();
+
+    width: 100%;
+    margin-bottom: 8px;
   }
 
   &__section-title {
@@ -86,7 +102,7 @@ export default {
     justify-content: space-between;
     align-content: center;
     width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: 0;
     cursor: pointer;
   }
 
@@ -101,11 +117,10 @@ export default {
   }
 
   .menu {
+    margin-top: 8px;
     padding-left: 16px;
 
     &__item {
-      list-style: none;
-
       &:not(:last-child) {
         margin-bottom: 16px;
       }

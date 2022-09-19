@@ -6,14 +6,19 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: () => import('@/views/HomeView.vue')
   },
   {
     path: '/input',
-    name: 'input',
+    name: 'Input',
     component: () => import('@/views/InputView.vue')
-  }
+  },
+  {
+    path: '/typography',
+    name: 'Typography',
+    component: () => import('@/views/TypographyView.vue')
+  },
 ]
 
 const router = new VueRouter({

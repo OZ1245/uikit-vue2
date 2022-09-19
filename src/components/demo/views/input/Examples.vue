@@ -5,7 +5,7 @@
       label="Дефолт"
     />
 
-    <highlight-code lang="html">
+    <highlight-code lang="html" class="example-code">
       <pre>
         &lt;cld-input 
           v-model="input.default"

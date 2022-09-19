@@ -52,23 +52,21 @@ export default {
   width: 100%;
 
   &__header {
+    @include tList();
+
     width: 100%;
     display: flex;
-    padding: 0;
-    margin: 0;
-
-    list-style: none;
   }
 
   &__tab {
     &--active {
       .cld-tabs__button {
         position: relative;
-        border-color: gray;
+        border-color: $cBorder;
 
         &:not(&--disabled):not(&:disabled) {
           color: inherit;
-          background: white;
+          background: $cBgMain;
         }
 
         &::after {
@@ -79,7 +77,7 @@ export default {
           bottom: -1px;
 
           display: block;
-          background: white;
+          background: $cBgMain;
 
           content: '';
         }
@@ -97,22 +95,20 @@ export default {
       width: 1px 1px 0 1px;
       style: solid;
       radius: 3px 3px 0 0;
-      color: green;
+      color: $cAccent;
     }
 
     cursor: pointer;
 
     &:not(&--disabled):not(&:disabled) {
-      background: green;
-      color: white;
+      background: $cAccent;
+      color: $cBgMain;
     }
 
-    &:hover {
-      // TODO: Светлее
-      &:not(&--disabled):not(&:disabled) {
-        background: green;
-        color: white;
-      } 
+    &:hover:not(&--disabled):not(&:disabled) {
+      // TODO: Вставить правильную функцию осветления
+      background-color: lighter($cAccent, 10%);
+      color: $cBgMain;
     }
   }
 
@@ -121,7 +117,7 @@ export default {
     border: {
       width: 1px;
       style: solid;
-      color: gray;
+      color: $cBorder;
       radius: 0 3px 3px 3px; 
     }
   }

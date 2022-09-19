@@ -48,6 +48,7 @@ export default {
 
     window.addEventListener('scroll', (event) => {
       this.$nextTick(() => {
+        // TODO: Add throttler function
         this.scrollTop = event.target.scrollingElement.scrollTop
         this.setOffsets()
       })
@@ -124,17 +125,33 @@ body {
 .aside {
   width: 100%;
   max-width: 200px;
-  border-right: 1px solid gray;
+  flex-shrink: 0;
+  background-color: $cBgMain;
+  border-right: 1px solid $cBorder;
 
   &._fixed {
     height: 100%;
     position: fixed;
     top: 0;
+    z-index: 1;
   }
 }
 
 .main {
   width: 100%;
+}
+
+.example-code {
+  code {
+    padding: 8px;
+    background-color: $cBgAdditional;
+    border: {
+      width: 1px;
+      style: solid; 
+      color: $cBorder;
+      radius: 2px;
+    };
+  }
 }
 
 </style>

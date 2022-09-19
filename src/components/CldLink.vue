@@ -4,7 +4,7 @@
     v-bind="direction"
     :class="[
       'cld-link',
-      (type) ? `cld-link--${type}` : false
+      (type) ? `link--${type}` : false
     ]"
   >
     <slot>
@@ -62,47 +62,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.cld-link {
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  transition: color .3s;
-  cursor: pointer;
-
-  &:after {
-    @include Size(0, 1px);
-
-    position: absolute;
-    left: 0;
-    bottom: 0;
-
-    display: inline-block;
-
-    content: '';
-    transition: width .3s;
-  }
-
-  &:hover {
-    transition: color .15s;
-
-    &::after {
-      width: 100%;
-      transition: width .15s;
-    }
-  }
-
-  &--primary {
-    color: green;
-
-    &::after {
-      background: green;
-    }
-
-    &:hover {
-      color: dark(green, 50%);
-    }
-  }
-}
-</style>

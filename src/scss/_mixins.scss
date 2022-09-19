@@ -7,3 +7,141 @@
     height: $width;
   }
 }
+
+@mixin tHeader ($level: 1) {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  line-height: $tHeadingLineHeight;
+  margin-top: 0;
+  margin-bottom: $tSpaceXXS;
+
+  @if ($level == 0) {
+    font-size: $tSizeXXL;
+
+  @media screen and (min-width: $md) {
+      font-size: $tSizeXXXL;
+    }
+  }
+
+  @if ($level == 1) {
+    font-size: $tSizeXL;
+
+    @media screen and (min-width: $md) {
+      font-size: $tSizeXXL;
+    }
+
+    @media screen and (min-width: $xxxl) {
+      font-size: $tSizeXXXL;
+    }
+  }
+
+  @if ($level == 2) {
+    font-size: $tSizeLG;
+    
+    @media screen and (min-width: $md) {
+      font-size: $tSizeXL;
+    }
+
+    @media screen and (min-width: $xxxl) {
+      font-size: $tSizeXXL;
+    }
+  }
+
+  @if ($level == 3) {
+    font-size: $tSizeMD;
+    
+    @media screen and (min-width: $md) {
+      font-size: $tSizeLG;
+    }
+
+    @media screen and (min-width: $xxxl) {
+      font-size: $tSizeXL;
+    }
+  }
+
+  @if ($level == 4) {
+    font-size: $tSizeSM;
+    
+    @media screen and (min-width: $md) {
+      font-size: $tSizeMD;
+    }
+  
+    @media screen and (min-width: $xl) {
+      font-size: $tSizeLG;
+    }
+  
+    @media screen and (min-width: $xxxl) {
+      fonst-size: $tSizeXXXL;
+    }
+  }
+
+  @if ($level == 5) {
+    font-size: $tSizeXS;
+    
+    @media screen and (min-width: $md) {
+      font-size: $tSizeSM;
+    }
+  
+    @media screen and (min-width: $xl) {
+      font-size: $tSizeLG;
+    }
+  
+    @media screen and (min-width: $xxxl) {
+      fonst-size: $tSizeXL;
+    }
+  }
+
+  @if ($level == 6) {
+    font-size: $tSizeXS;
+    
+    @media screen and (min-width: $md) {
+      font-size: $tSizeXS;
+    }
+  
+    @media screen and (min-width: $xl) {
+      font-size: $tSizeMD;
+    }
+  
+    @media screen and (min-width: $xxxl) {
+      fonst-size: $tSizeLG;
+    }
+  }
+}
+
+@mixin tText ($type: 'primary') {
+  font-family: 'Montserrat', sans-serif;
+  font-size: $tSizeSM;
+  font-style: normal;
+  line-height: $tBodyLineHeight;
+  margin-top: 0;
+  margin-bottom: $tSpaceSM;
+
+  @if ($type == 'primary') {
+    font-weight: 400;
+    color: $cTextMain;
+  }
+  
+  @if ($type == 'additional') {
+    font-weight: 300;
+    color: $cTextAdditional;
+  }
+
+  @media screen and (min-width: $md) {
+    font-size: $tSizeMD;
+  }
+
+  @media screen and (min-width: $xxxl) {
+    font-size: $tSizeLG;
+  }
+}
+
+@mixin tList () {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: inline-block;
+  }
+}

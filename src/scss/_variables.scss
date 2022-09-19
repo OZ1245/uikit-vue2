@@ -23,3 +23,42 @@ $cTypeDanger: #A31513;
 $cTextMain: #133538;
 $cTextAdditional: #558185;
 $cTextWhite: #FFFFFF;
+
+// BREAKPOINTS
+
+$xs: 360px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+$xxxl: 1920px;
+
+// TYPOGRAPHY
+
+// Base Values
+$tSizeBase: 1em;
+$tScaleRatio: 1.2;
+$tBaseline: 24px;
+$tHeadingLineHeight: 1.2;
+$tBodyLineHeight: 1.4;
+
+// Type Scale
+$tSizeXS: calc(1em / ($tScaleRatio * $tScaleRatio));
+$tSizeSM: calc(1em / $tScaleRatio);
+$tSizeMD: calc(1em * $tScaleRatio);
+$tSizeLG: calc(1em * $tScaleRatio * $tScaleRatio);
+$tSizeXL: calc(1em * $tScaleRatio * $tScaleRatio * $tScaleRatio);
+$tSizeXXL: calc(1em * $tScaleRatio * $tScaleRatio * $tScaleRatio * $tScaleRatio);
+$tSizeXXXL: calc(1em * $tScaleRatio * $tScaleRatio * $tScaleRatio * $tScaleRatio * $tScaleRatio);
+
+// Spaces
+$tSpaceXXXS: 0.25em;
+$tSpaceXXS: 0.375em;
+$tSpaceXS: 0.5em;
+$tSpaceSM: 0.75em;
+$tSpaceMD: 1.25em;
+$tSpaceLG: 2em;
+$tSpaceXL: 3.25em;
+$tSpaceXXL: 5.25em;
+$tSpaceXXXL: 8.5em;
