@@ -14,11 +14,16 @@ Vue.use(VueHighlightJS, {
   }
 })
 
+
 import CldNotice from '@/components/CldNotice/main.js'
 Vue.prototype.$CldNotice = CldNotice
 
 // import VueStickyDirective from '@/utils/VueStickyDirective'
 // Vue.directive('sticky', VueStickyDirective)
+
+// Layouts
+import DefaultLayout from '@/layouts/DefaultLayout'
+Vue.component('DefaultLayout', DefaultLayout)
 
 Vue.config.productionTip = false
 
